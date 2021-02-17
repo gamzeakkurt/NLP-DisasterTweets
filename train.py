@@ -45,9 +45,20 @@ for message in df['text']:
         message, remove_stopwords=True, return_list=False))
 
 
+clean_message = []
+for message in clean_messages:
+    clean_message.append(abb(message))
+
+lemmanization = []
+for message in clean_message:
+    lemmanization.append(lemma(message))
+    
+stemming=[]
+for message in lemmanization:
+    stemming.append(stem(message)) 
  
 #convert text to vector using bag of words method
-data_features,data_features_name=BagOfWords(clean_messages)
+data_features,data_features_name=BagOfWords(stemming)
 
 #data features convert data frame
 data=pd.DataFrame(data_features,columns=data_features_name)
